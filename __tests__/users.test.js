@@ -29,6 +29,14 @@ describe('users', () => {
     });
   });
 
+  it('POST /api/v1/sessions will sign in a user', async () => {
+    await request(app).post('/api/v1/users').send(mockMe);
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'hc@testexample.com', password: '654321' });
+    expect(res.status).toEqual(200);
+  });
+
   afterAll(() => {
     pool.end();
   });
