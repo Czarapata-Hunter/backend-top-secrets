@@ -33,7 +33,7 @@ describe('secrets', () => {
     expect(resp.body).toMatchInlineSnapshot(`
       Array [
         Object {
-          "createdAt": "2022-11-17T20:26:32.280Z",
+          "createdAt": "2022-11-17T20:31:29.994Z",
           "description": "Gonna invade yo",
           "id": "1",
           "title": "Invasion Plans",
@@ -64,3 +64,5 @@ describe('secrets', () => {
     pool.end();
   });
 });
+// Adding to get CI passing. Trying to update secrets on github,
+// because I had them but I feel I might have mistyped one?
