@@ -28,14 +28,14 @@ describe('secrets', () => {
     await agent
       .post('/api/v1/users/sessions')
       .send({ email: 'hc@testexample.com', password: '654321' });
-    const resp = await agent.get('/api/v1/secrets');
     await agent.post('/api/v1/secrets').send(mockSecret);
+    const resp = await agent.get('/api/v1/secrets');
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual([
       {
         id: expect.any(String),
-        title: 'Invasion Plans',
-        description: 'Gonna invade yo',
+        title: 'Go go go!',
+        description: 'Let us go over there',
         createdAt: expect.any(String),
       },
     ]);
