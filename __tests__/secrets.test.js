@@ -29,17 +29,16 @@ describe('secrets', () => {
       .post('/api/v1/users/sessions')
       .send({ email: 'hc@testexample.com', password: '654321' });
     const resp = await agent.get('/api/v1/secrets');
+    await agent.post('/api/v1/secrets').send(mockSecret);
     expect(resp.status).toBe(200);
-    expect(resp.body).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "createdAt": "2022-11-17T20:31:29.994Z",
-          "description": "Gonna invade yo",
-          "id": "1",
-          "title": "Invasion Plans",
-        },
-      ]
-    `);
+    expect(resp.body).toEqual([
+      {
+        id: expect.any(String),
+        title: 'Invasion Plans',
+        description: 'Gonna invade yo',
+        createdAt: expect.any(String),
+      },
+    ]);
   });
 
   it('POST /api/v1/secrets will create a new secret', async () => {
@@ -64,5 +63,3 @@ describe('secrets', () => {
     pool.end();
   });
 });
-// Adding to get CI passing. Trying to update secrets on github,
-// because I had them but I feel I might have mistyped one?
